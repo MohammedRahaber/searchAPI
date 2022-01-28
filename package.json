@@ -1,0 +1,37 @@
+{
+  "name": "dummyf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "SET NODE_ENV=development&& node index.js",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musharaffalikhan/GIT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/musharaffalikhan/GIT/issues"
+  },
+  "homepage": "https://github.com/musharaffalikhan/GIT#readme",
+  "dependencies": {
+    "@graphql-tools/schema": "^8.3.1",
+    "apollo-server": "^3.6.2",
+    "apollo-server-core": "^3.6.2",
+    "apollo-server-express": "^3.6.2",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "express-busboy": "^8.0.0",
+    "graphql": "^16.2.0",
+    "graphql-subscriptions": "^2.0.0",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "subscriptions-transport-ws": "^0.11.0"
+  }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    flex-direction: column;
+   
+}
+
+
+
+
+/* Style the search box */
+#mySearch {
+  font-size: 15px;
+  padding: 11px;
+  border: 1px solid #ddd;
+  width: 700px;
+  border-radius: 5px;
+  box-shadow: 2.5px 5px 5px grey;
+
+}
+
+
+
+/* Style the navigation menu inside the left column */
+#myMenu{
+  width: 500px;
+border: 1px solid gray;
+border-radius: 2px;
+  box-shadow: 1px 2px 2px grey;
+  max-height: 200px;
+ overflow: auto;
+ padding: 5pt;
+}
+
+
+#myMenu li  {
+  padding: 12px;
+  display: block;
+  list-style-type: none;
+  border-radius: 2px;
+  box-shadow: 1px 2px 2px grey;
+  margin: 5px;
+  background-color: rgba(142, 181, 231, 0.459);
+}
+</style>
+</head>
+<body>
+
+    <input type="text" id="mySearch" onkeyup="myFunction(event)" placeholder="Search by user, address, order, pincode....." title="Type in a category">
+    <ul id="myMenu">
+    </ul>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js" integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+async function myFunction(e) {
+
+  let input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch").value;
+  ul = document.getElementById("myMenu");
+  ul.innerHTML=''
+
+  if((input.trim())=='')return
+
+const data = await axios.get(`http://localhost:300/search?search_patttern=${input.trim()}`);
+
+let arrData=data.data
+
+if(arrData.length>0){
+  for(let i=0;i<arrData.length;i++){
+    
+    let liTag=document.createElement('li');
+
+let str=`
+<a href="#"><span style="color:black;">name :${arrData[i].name}</span></a> 
+<br>
+  <span style="color:rgb(2, 34, 138);" >
+  </h2> items: ${(arrData[i].items)} 
+<br> address: ${arrData[i].address} 
+<br> pincode: ${arrData[i].pincode}</h2></span>
+
+ `
+let re = new RegExp((input.trim()),"g");
+let newText = str.replace(re, `<mark>${input}</mark>`);
+liTag.innerHTML=newText;
+     
+// liTag.innerHTML=str;
+ul.appendChild(liTag)
+
+  }
+  
+}
+
+
+}
+</script>
+
+</body>
+</html>
